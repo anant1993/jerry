@@ -9,7 +9,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
- *   	http://www.apache.org/licenses/LICENSE-2.0
+ * 		http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,7 +28,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.util.Assert;
+//import org.springframework.util.Assert;
 
 /**
  * @author Anant Gupta
@@ -107,10 +107,9 @@ public class CompressionUtilsTest {
 	 * Test method for {@link com.sangupta.jerry.util.CompressionUtils#uncompressToString(byte[])}.
 	 */
 	@Test
-	public void testUncompressToStringByteArray() {
-		byte[] b1="this is a string".getBytes();
-		String a=CompressionUtils.uncompressToString(b1);
-		assertEquals("this is a string", a);
+	public void testUncompressToStringByteArray() 
+	{
+		assertEquals("string", CompressionUtils.uncompressToString(CompressionUtils.compress("string")));
 	}
 
 	/**
