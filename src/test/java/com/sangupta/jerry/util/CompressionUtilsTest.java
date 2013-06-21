@@ -23,10 +23,7 @@ package com.sangupta.jerry.util;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
 import org.junit.Test;
 //import org.springframework.util.Assert;
 
@@ -36,41 +33,12 @@ import org.junit.Test;
  */
 public class CompressionUtilsTest {
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	/**
-	 * Test method for {@link com.sangupta.jerry.util.CompressionUtils#compress(java.lang.String)}.
-	 */
+	private static final String TEST_MESSAGE="this is one long message that we need to test as to how the deflater is working. test should pass here.";
 	@Test
 	public void testCompressString() {
 		assertEquals(null, CompressionUtils.compress((String) null));
-		assertNotSame("message", CompressionUtils.uncompress(CompressionUtils.compress("message")));
+        assertEquals(null, CompressionUtils.compress(""));
+        assertNotSame(TEST_MESSAGE, CompressionUtils.uncompress(CompressionUtils.compress(TEST_MESSAGE)));
 				
 	}
 
@@ -80,8 +48,8 @@ public class CompressionUtilsTest {
 	@Test
 	public void testCompressByteArray() {
 			
-		byte[] abc = "Hello World".getBytes();
-		assertEquals(abc, CompressionUtils.uncompress(CompressionUtils.compress("Hello World")));
+		byte[] abc = TEST_MESSAGE.getBytes();
+        assertArrayEquals(abc, CompressionUtils.uncompress(CompressionUtils.compress(abc)));
 		
 	}
 
@@ -100,7 +68,7 @@ public class CompressionUtilsTest {
 	 */
 	@Test
 	public void testUncompressByteArrayInt() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -109,7 +77,7 @@ public class CompressionUtilsTest {
 	@Test
 	public void testUncompressToStringByteArray() 
 	{
-		assertEquals("string", CompressionUtils.uncompressToString(CompressionUtils.compress("string")));
+		assertEquals(TEST_MESSAGE, CompressionUtils.uncompressToString(CompressionUtils.compress(TEST_MESSAGE)));
 	}
 
 	/**
